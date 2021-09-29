@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Switch, withRouter, Route } from 'react-router-dom'
+import FullComment from '../../FullComment/FullComment'
 import CommentService from '../../services/CommentService'
 import Comment from '../Comment/Comment'
 
 class AllComments extends Component {
 
-    state = { comments: [], comment: null }
+    state = { comments: [] }
 
     commentService = new CommentService()
 
@@ -19,29 +20,26 @@ class AllComments extends Component {
 
 
     render() {
-        let { comments, comment } = this.state
+        let { comments } = this.state
         let { match: { url } } = this.props
 
 
         return (
             <div> 
-                 <Switch>
-
-                    {
-                        comment &&
+                 <hr />
+                <Switch>
+                    
+                   
                     
                         <Route path={`${url}/:id`} render={(props) => {
-                            
-                            console.log(props);
-                            let { id } = props.match.params
-                            this.selectThisComment(id)
-                            console.log(comment);
-                            return <Comment item={comment} key={id} />
+                            let { match: { params: { id }}} = props
+                            return <FullComment id={id} key={id}/>
                         }} />
                         
-                    }             
+                            
+                
                 </Switch>
-
+                    <hr />
 
                 {
                     comments.map(value => ( <Comment item={value} key={value.id} /> ))

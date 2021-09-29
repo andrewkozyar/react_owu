@@ -11,7 +11,6 @@ class Comment extends Component {
             <div>
                 
                 <h2>{ item.email }</h2>
-                <p>{ item.body }</p>
                 <Link to={`${url}/${item.id}`}><button>chose me</button></Link>
                 <hr />
 
